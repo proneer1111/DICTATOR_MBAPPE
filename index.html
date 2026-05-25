@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PRON33R UNIVERSE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold2: #f0d080;
+    --gold3: #7a5c1e;
+    --dark: #0a0804;
+    --dark2: #12100a;
+    --dark3: #1c1710;
+    --dark4: #241f14;
+    --cream: #f5e6c8;
+    --red: #8b1a1a;
+    --blood: #5c0f0f;
+    --silver: #c0c0c0;
+    --bg-pattern: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(201,168,76,0.03) 2px,
+      rgba(201,168,76,0.03) 4px
+    );
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--dark);
+    font-family: 'Crimson Text', serif;
+    color: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ─── CUSTOM SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--gold3); border-radius: 3px; }
+
+  /* ─── GLOBAL GOLD GRAIN OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    text-align: center;
+    padding: 36px 20px 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+    background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, transparent 100%);
+  }
+  header::before {
+    content: '✦  ✦  ✦';
+    display: block;
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+    opacity: 0.7;
+  }
+  .logo-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(22px, 5vw, 52px);
+    font-weight: 900;
+    background: linear-gradient(135deg, #7a5c1e 0%, #c9a84c 35%, #f0d080 50%, #c9a84c 65%, #7a5c1e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 4px;
+    line-height: 1.1;
+    text-shadow: none;
+    animation: shimmer 4s infinite;
+    background-size: 200% auto;
+  }
+  @keyframes shimmer {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+  }
+  .logo-sub {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(9px, 1.5vw, 13px);
+    letter-spacing: 10px;
+    color: var(--gold);
+    margin-top: 6px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .header-email {
+    font-family: 'Crimson Text', serif;
+    font-size: 12px;
+    color: rgba(201,168,76,0.5);
+    margin-top: 8px;
+    letter-spacing: 2px;
+  }
+
+  /* ─── ORNAMENT DIVIDER ─── */
+  .ornament {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; margin: 16px 0;
+    color: var(--gold3); font-size: 11px; letter-spacing: 4px;
+  }
+  .ornament::before, .ornament::after {
+    content: '';
+    flex: 1; max-width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold3), transparent);
+  }
+
+  /* ─── NAV TABS ─── */
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 30px 20px;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    position: relative;
+    font-family: 'Cinzel', serif;
+    font-size: clamp(10px, 2vw, 14px);
+    letter-spacing: 2px;
+    color: rgba(201,168,76,0.5);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 14px 28px;
+    text-transform: uppercase;
+    transition: all 0.4s;
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .tab-btn:hover {
+    color: var(--gold);
+    border-color: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.05);
+  }
+  .tab-btn.active {
+    color: var(--gold2);
+    border: 1px solid var(--gold3);
+    background: rgba(201,168,76,0.08);
+    box-shadow: 0 0 20px rgba(201,168,76,0.12), inset 0 0 20px rgba(201,168,76,0.04);
+  }
+  .tab-btn.active::before {
+    content: '◆';
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    color: var(--gold);
+  }
+  .tab-badge {
+    display: inline-block;
+    background: var(--red);
+    color: #fff;
+    font-size: 8px;
+    padding: 1px 5px;
+    border-radius: 2px;
+    margin-left: 6px;
+    letter-spacing: 1px;
+    vertical-align: middle;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; }
+    50% { opacity:0.5; }
+  }
+
+  /* ─── PANELS ─── */
+  .panel { display: none; animation: fadeIn 0.5s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity:0; transform: translateY(10px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 20px 60px;
+  }
+
+  /* ═══════════════════════════════════════
+     HISTORY TAB
+  ═══════════════════════════════════════ */
+  .history-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+  }
+  .napoleon-frame {
+    width: 180px; height: 220px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 40px rgba(201,168,76,0.3), inset 0 0 20px rgba(201,168,76,0.1);
+    position: relative;
+    overflow: hidden;
+    background: var(--dark3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+    margin-bottom: 20px;
+  }
+  .napoleon-frame::before {
+    content: '';
+    position: absolute; inset: 6px;
+    border: 1px solid rgba(201,168,76,0.4);
+    pointer-events: none;
+  }
+  .napoleon-badge {
+    background: linear-gradient(135deg, #7a5c1e, #c9a84c);
+    color: var(--dark);
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .history-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(16px, 3vw, 26px);
+    color: var(--gold2);
+    max-width: 600px;
+    line-height: 1.6;
+    border-left: 3px solid var(--gold3);
+    padding-left: 20px;
+    text-align: left;
+    margin: 10px auto;
+  }
+  .history-quote cite {
+    display: block;
+    font-size: 13px;
+    font-style: normal;
+    color: var(--gold);
+    margin-top: 8px;
+    letter-spacing: 2px;
+    font-family: 'Cinzel', serif;
+  }
+
+  /* ─── FIGURE GRID ─── */
+  .era-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--gold3);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 40px 0 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .era-title::before, .era-title::after {
+    content: ''; flex:1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold3), transparent);
+  }
+
+  .figures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+  .figure-card {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 16px 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .figure-card::before {
+    content: '';
+    position: absolute; top:0; left:0; right:0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .figure-card:hover {
+    border-color: var(--gold3);
+    background: var(--dark4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  }
+  .figure-card:hover::before { opacity: 1; }
+  .figure-card.premium {
+    border-color: rgba(201,168,76,0.4);
+    background: linear-gradient(135deg, var(--dark3), rgba(201,168,76,0.04));
+  }
+  .figure-card.premium::after {
+    content: '★ PREMIUM';
+    position: absolute; top: 6px; right: 6px;
+    font-family: 'Cinzel', serif;
+    font-size: 7px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    padding: 2px 4px;
+  }
+  .figure-emoji { font-size: 36px; display: block; margin-bottom: 8px; }
+  .figure-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .figure-era {
+    font-size: 11px;
+    color: rgba(201,168,76,0.45);
+    font-style: italic;
+  }
+
+  /* ─── FIGURE MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--dark2);
+    border: 1px solid var(--gold3);
+    max-width: 680px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 0 80px rgba(201,168,76,0.15);
+    animation: modalIn 0.3s ease;
+  }
+  @keyframes modalIn {
+    from { transform: scale(0.92); opacity:0; }
+    to { transform: scale(1); opacity:1; }
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px;
+    color: var(--gold3);
+    background: none; border: none;
+    font-size: 22px; cursor: pointer;
+    font-family: 'Cinzel', serif;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--gold); }
+  .modal-emoji { font-size: 60px; text-align: center; display: block; margin-bottom: 12px; }
+  .modal-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(18px, 4vw, 28px);
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .modal-dates {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold3);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .modal-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 20px; }
+  .modal-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    padding: 3px 8px;
+    border: 1px solid var(--gold3);
+    color: var(--gold3);
+    text-transform: uppercase;
+  }
+  .modal-section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold3);
+    text-transform: uppercase;
+    margin: 20px 0 10px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding-bottom: 6px;
+  }
+  .modal-text {
+    font-size: 16px;
+    line-height: 1.75;
+    color: rgba(245,230,200,0.85);
+  }
+  .modal-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--gold2);
+    border-left: 2px solid var(--gold3);
+    padding-left: 16px;
+    margin: 16px 0;
+  }
+
+  /* ═══════════════════════════════════════
+     COMING SOON TAB
+  ═══════════════════════════════════════ */
+  .coming-soon-wrap {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .cs-icon { font-size: 80px; margin-bottom: 24px; animation: float 3s ease-in-out infinite; }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .cs-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(28px, 6vw, 56px);
+    background: linear-gradient(135deg, var(--gold3), var(--gold), var(--gold2), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+  .cs-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 6px;
+    color: var(--gold3);
+    margin-bottom: 40px;
+  }
+  .cs-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    max-width: 800px;
+    width: 100%;
+    margin-top: 30px;
+  }
+  .cs-feature {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 20px;
+    text-align: left;
+  }
+  .cs-feature-icon { font-size: 28px; margin-bottom: 10px; }
+  .cs-feature-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .cs-feature-desc { font-size: 13px; color: rgba(245,230,200,0.6); line-height: 1.5; }
+  .cs-countdown {
+    margin-top: 40px;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: rgba(201,168,76,0.5);
+  }
+
+  /* ═══════════════════════════════════════
+     DICTATOR MBAPPE TAB
+  ═══════════════════════════════════════ */
+  .dictator-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 40px 0;
+  }
+  @media (max-width: 700px) {
+    .dictator-hero { grid-template-columns: 1fr; }
+  }
+  .dictator-img-frame {
+    position: relative;
+    text-align: center;
+  }
+  .dictator-img {
+    width: min(300px, 90%);
+    height: auto;
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 60px rgba(201,168,76,0.25), -8px 8px 0 var(--blood);
+    position: relative;
+    z-index: 1;
+    filter: sepia(15%) contrast(1.05);
+  }
+  .dictator-img-frame::before {
+    content: '';
+    position: absolute;
+    inset: -8px; left: 8px;
+    border: 1px solid var(--gold3);
+    z-index: 0;
+  }
+  .dictator-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(22px, 4vw, 40px);
+    background: linear-gradient(135deg, #7a5c1e 0%, #c9a84c 40%, #f0d080 55%, #c9a84c 70%, #7a5c1e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .dictator-title-badge {
+    display: inline-block;
+    background: var(--blood);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    padding: 5px 16px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .dictator-desc {
+    font-size: 17px;
+    line-height: 1.75;
+    color: rgba(245,230,200,0.8);
+    font-style: italic;
+    font-family: 'Playfair Display', serif;
+    border-left: 3px solid var(--blood);
+    padding-left: 16px;
+  }
+  .dictator-stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .dstat {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 14px 10px;
+    text-align: center;
+  }
+  .dstat-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 22px;
+    color: var(--gold);
+    display: block;
+  }
+  .dstat-lbl {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold3);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ─── API KEY CONFIG ─── */
+  .api-config {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-left: 3px solid var(--gold3);
+    padding: 20px 24px;
+    margin: 30px 0;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .api-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold3);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .api-input {
+    flex: 1;
+    min-width: 200px;
+    background: var(--dark);
+    border: 1px solid var(--gold3);
+    color: var(--cream);
+    font-family: 'Crimson Text', serif;
+    font-size: 14px;
+    padding: 8px 12px;
+    outline: none;
+  }
+  .api-input:focus { border-color: var(--gold); }
+  .api-model-select {
+    background: var(--dark);
+    border: 1px solid var(--gold3);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    padding: 8px 12px;
+    outline: none;
+    cursor: pointer;
+  }
+  .api-save-btn {
+    background: linear-gradient(135deg, var(--gold3), var(--gold));
+    color: var(--dark);
+    border: none;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+  }
+  .api-save-btn:hover { opacity: 0.85; }
+
+  /* ─── MATCHES ─── */
+  .matches-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--gold3);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 40px 0 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .matches-title::before,.matches-title::after {
+    content:''; flex:1;
+    height:1px;
+    background: linear-gradient(90deg, transparent, var(--gold3), transparent);
+  }
+
+  .matches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  .match-card {
+    background: var(--dark3);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .match-card:hover {
+    border-color: var(--gold3);
+    background: var(--dark4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+  .match-date {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--gold3);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .match-teams {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .match-team {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: var(--cream);
+    text-align: center;
+    flex:1;
+    letter-spacing: 1px;
+  }
+  .match-score {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 22px;
+    color: var(--gold);
+    padding: 0 12px;
+    white-space: nowrap;
+  }
+  .match-competition {
+    font-size: 11px;
+    color: rgba(201,168,76,0.45);
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .match-explain-btn {
+    width: 100%;
+    background: linear-gradient(90deg, var(--blood), transparent);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-top: none;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    padding: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .match-explain-btn:hover { background: linear-gradient(90deg, var(--red), var(--blood)); }
+
+  /* ─── EXPLANATION PANEL ─── */
+  .explanation-panel {
+    background: var(--dark2);
+    border: 1px solid var(--gold3);
+    border-left: 3px solid var(--blood);
+    padding: 28px;
+    margin-top: 12px;
+    display: none;
+    position: relative;
+  }
+  .explanation-panel.open { display: block; animation: fadeIn 0.3s ease; }
+  .exp-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .exp-avatar {
+    width: 50px; height: 50px;
+    background: var(--dark3);
+    border: 1px solid var(--gold3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+  .exp-speaker {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold3);
+    text-transform: uppercase;
+  }
+  .exp-speaker b { color: var(--gold); font-size: 14px; display: block; }
+  .exp-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(245,230,200,0.88);
+    font-style: italic;
+  }
+  .exp-loading {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold3);
+  }
+  .exp-loading::after {
+    content: '...';
+    animation: dots 1.5s infinite;
+  }
+  @keyframes dots {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: rgba(201,168,76,0.35);
+    margin-top: 40px;
+  }
+  footer a {
+    color: rgba(201,168,76,0.5);
+    text-decoration: none;
+  }
+  footer a:hover { color: var(--gold); }
+  .footer-logo {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 14px;
+    color: var(--gold3);
+    margin-bottom: 8px;
+    letter-spacing: 4px;
+  }
+
+  /* ─── SCROLLED MATCH EXPLANATION PANEL GLOBAL ─── */
+  #global-exp-panel {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-title">PRON33R UNIVERSE</div>
+  <div class="logo-sub">Knowledge · Power · Dominion</div>
+  <div class="header-email">pron33rbusiness@gmail.com</div>
+</header>
+
+<nav>
+  <button class="tab-btn" onclick="switchTab('history')">⚔ History</button>
+  <button class="tab-btn active" onclick="switchTab('dictator')">👑 Dictator Mbappe Explains Football</button>
+  <button class="tab-btn" onclick="switchTab('coming')">🔮 Coming Soon <span class="tab-badge">SOON</span></button>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HISTORY PANEL
+══════════════════════════════════════ -->
+<div id="panel-history" class="panel">
+<div class="section-wrap">
+
+  <div class="history-hero">
+    <span class="napoleon-badge">⭐ Premium Character</span>
+    <div class="napoleon-frame">🎖️</div>
+    <div class="history-quote">
+      "My enemy's are many, my equals are none."
+      <cite>— Napoléon Bonaparte, Emperor of the French</cite>
+    </div>
+  </div>
+
+  <div class="ornament">✦ THE ARCHIVE OF POWER ✦</div>
+
+  <!-- ANCIENT ERA -->
+  <div class="era-title">Ancient World · Before 500 AD</div>
+  <div class="figures-grid" id="ancient-grid"></div>
+
+  <!-- MEDIEVAL ERA -->
+  <div class="era-title">Medieval & Renaissance · 500 – 1600</div>
+  <div class="figures-grid" id="medieval-grid"></div>
+
+  <!-- MODERN ERA -->
+  <div class="era-title">Modern Age · 1600 – 1950</div>
+  <div class="figures-grid" id="modern-grid"></div>
+
+  <!-- CONTEMPORARY -->
+  <div class="era-title">Contemporary & Controversial · 1950 – Present</div>
+  <div class="figures-grid" id="contemporary-grid"></div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     DICTATOR MBAPPE PANEL
+══════════════════════════════════════ -->
+<div id="panel-dictator" class="panel active">
+<div class="section-wrap">
+
+  <div class="dictator-hero">
+    <div class="dictator-img-frame">
+      <img id="mbappe-img" src="" alt="Dictator Mbappe" class="dictator-img"
+           onerror="this.style.display='none'; document.getElementById('mbappe-fallback').style.display='flex'"/>
+      <div id="mbappe-fallback" style="display:none; width:min(300px,90%); height:350px; background:var(--dark3); border:2px solid var(--gold); align-items:center; justify-content:center; font-size:100px; box-shadow:0 0 60px rgba(201,168,76,0.25), -8px 8px 0 var(--blood);">👑</div>
+    </div>
+    <div>
+      <div class="dictator-name">DICTATOR<br/>MBAPPE</div>
+      <div class="dictator-title-badge">⭐ Supreme Commander of Football</div>
+      <p class="dictator-desc">
+        "I do not watch football. I decree it. Every match is a battlefield, every goal a conquest. The weak celebrate — the worthy analyse. I shall enlighten you, whether you deserve it or not."
+      </p>
+      <div class="dictator-stats">
+        <div class="dstat"><span class="dstat-num">∞</span><div class="dstat-lbl">Authority</div></div>
+        <div class="dstat"><span class="dstat-num">0</span><div class="dstat-lbl">Mercy</div></div>
+        <div class="dstat"><span class="dstat-num">I</span><div class="dstat-lbl">Equals</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- API CONFIG -->
+  <div class="api-config">
+    <span class="api-label">🔑 API Key</span>
+    <input type="password" class="api-input" id="apiKeyInput" placeholder="Enter your Anthropic or Gemini API key here..." />
+    <select class="api-model-select" id="modelSelect">
+      <option value="claude-sonnet-4-20250514">Claude Sonnet 4 (Anthropic)</option>
+      <option value="claude-opus-4-20250514">Claude Opus 4 (Anthropic)</option>
+      <option value="claude-haiku-4-5-20251001">Claude Haiku (Anthropic)</option>
+      <option value="gemini-2.0-flash">Gemini 2.0 Flash (Gemini)</option>
+      <option value="gemini-1.5-pro">Gemini 1.5 Pro (Gemini)</option>
+    </select>
+    <button class="api-save-btn" onclick="saveApiKey()">Save Key</button>
+    <span id="api-status" style="font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--gold3);"></span>
+  </div>
+
+  <div class="matches-title">Recent Matches · Dictator's War Room</div>
+
+  <div class="matches-grid" id="matches-grid"></div>
+  <div id="global-exp-panel"></div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     COMING SOON PANEL
+══════════════════════════════════════ -->
+<div id="panel-coming" class="panel">
+<div class="section-wrap">
+<div class="coming-soon-wrap">
+  <div class="cs-icon">⚡</div>
+  <div class="cs-title">COMING SOON</div>
+  <div class="cs-sub">The Empire Expands</div>
+  <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:rgba(245,230,200,0.6);max-width:500px;line-height:1.6;">
+    The Dictator's dominion grows. New chronicles, new conquests, new decrees are being forged in the fires of ambition.
+  </p>
+  <div class="cs-features">
+    <div class="cs-feature">
+      <div class="cs-feature-icon">🗺️</div>
+      <div class="cs-feature-name">Empire Map</div>
+      <div class="cs-feature-desc">Interactive world map of historical empires across time</div>
+    </div>
+    <div class="cs-feature">
+      <div class="cs-feature-icon">⚔️</div>
+      <div class="cs-feature-name">Battle Simulator</div>
+      <div class="cs-feature-desc">Pit historical armies against each other with AI analysis</div>
+    </div>
+    <div class="cs-feature">
+      <div class="cs-feature-icon">📜</div>
+      <div class="cs-feature-name">Decree Generator</div>
+      <div class="cs-feature-desc">Write official proclamations in the style of any dictator</div>
+    </div>
+    <div class="cs-feature">
+      <div class="cs-feature-icon">🏆</div>
+      <div class="cs-feature-name">Football Oracle</div>
+      <div class="cs-feature-desc">Dictator Mbappe predicts match outcomes before they happen</div>
+    </div>
+    <div class="cs-feature">
+      <div class="cs-feature-icon">🎭</div>
+      <div class="cs-feature-name">Leader Debates</div>
+      <div class="cs-feature-desc">AI debates between historical leaders on modern issues</div>
+    </div>
+    <div class="cs-feature">
+      <div class="cs-feature-icon">📡</div>
+      <div class="cs-feature-name">Live Intelligence</div>
+      <div class="cs-feature-desc">Real-time sports data with Dictator Mbappe live commentary</div>
+    </div>
+  </div>
+  <div class="cs-countdown">PRON33R UNIVERSE · pron33rbusiness@gmail.com · All Dominions Reserved</div>
+</div>
+</div>
+</div>
+
+<!-- FIGURE MODAL -->
+<div class="modal-overlay" id="figureModal" onclick="closeModal(event)">
+  <div class="modal-box" id="modalContent">
+    <button class="modal-close" onclick="document.getElementById('figureModal').classList.remove('open')">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">PRON33R UNIVERSE</div>
+  <div>pron33rbusiness@gmail.com &nbsp;·&nbsp; All Dominions Reserved &nbsp;·&nbsp; 2026</div>
+  <div style="margin-top:8px;">Knowledge is Power. Power is Everything.</div>
+</footer>
+
+<script>
+// ══════════════════════════════════════
+// TAB SWITCHING
+// ══════════════════════════════════════
+function switchTab(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ══════════════════════════════════════
+// API KEY MANAGEMENT
+// ══════════════════════════════════════
+let savedApiKey = localStorage.getItem('pu_api_key') || '';
+let savedModel = localStorage.getItem('pu_model') || 'claude-sonnet-4-20250514';
+
+window.addEventListener('load', () => {
+  if (savedApiKey) {
+    document.getElementById('apiKeyInput').value = savedApiKey;
+    document.getElementById('api-status').textContent = '✓ KEY LOADED';
+  }
+  document.getElementById('modelSelect').value = savedModel;
+  loadMbappeImage();
+  renderMatches();
+  renderFigures();
+});
+
+function saveApiKey() {
+  savedApiKey = document.getElementById('apiKeyInput').value.trim();
+  savedModel = document.getElementById('modelSelect').value;
+  localStorage.setItem('pu_api_key', savedApiKey);
+  localStorage.setItem('pu_model', savedModel);
+  const st = document.getElementById('api-status');
+  st.textContent = '✓ SAVED';
+  setTimeout(() => st.textContent = '', 2000);
+}
+
+// ══════════════════════════════════════
+// MBAPPE IMAGE
+// ══════════════════════════════════════
+function loadMbappeImage() {
+  // Try to load from same directory or use fallback emoji
+  const img = document.getElementById('mbappe-img');
+  img.src = '2818.png';
+}
+
+// ══════════════════════════════════════
+// MATCHES DATA (Real UCL + context)
+// ══════════════════════════════════════
+const MATCHES = [
+  { home: 'PSG', away: 'Liverpool', score: '2 – 0', date: 'Apr 9, 2026', comp: 'Champions League QF Leg 1', id: 'm1' },
+  { home: 'Barcelona', away: 'Atlético Madrid', score: '0 – 2', date: 'Apr 9, 2026', comp: 'Champions League QF Leg 1', id: 'm2' },
+  { home: 'Liverpool', away: 'PSG', score: '0 – 2', date: 'Apr 15, 2026', comp: 'Champions League QF Leg 2', id: 'm3' },
+  { home: 'Atlético Madrid', away: 'Barcelona', score: '1 – 2', date: 'Apr 15, 2026', comp: 'Champions League QF Leg 2', id: 'm4' },
+  { home: 'Bayern Munich', away: 'Real Madrid', score: '4 – 3', date: 'Apr 16, 2026', comp: 'Champions League SF Leg 1', id: 'm5' },
+  { home: 'Arsenal', away: 'Sporting CP', score: '0 – 0', date: 'Apr 16, 2026', comp: 'Champions League SF Leg 1', id: 'm6' },
+  { home: 'PSG', away: 'Bayern Munich', score: '5 – 4', date: 'Apr 29, 2026', comp: 'Champions League SF Leg 2', id: 'm7' },
+  { home: 'Atlético Madrid', away: 'Arsenal', score: '1 – 1', date: 'Apr 30, 2026', comp: 'Champions League SF Leg 2', id: 'm8' },
+  { home: 'Arsenal', away: 'Atlético Madrid', score: '1 – 0', date: 'May 6, 2026', comp: 'Champions League SF Leg 2 (Replay)', id: 'm9' },
+  { home: 'Bayern Munich', away: 'PSG', score: '1 – 1', date: 'May 7, 2026', comp: 'Champions League SF Leg 2', id: 'm10' },
+  { home: 'PSG', away: 'Arsenal', score: 'TBD', date: 'May 30, 2026', comp: '🏆 Champions League FINAL', id: 'm11', upcoming: true },
+];
+
+function renderMatches() {
+  const grid = document.getElementById('matches-grid');
+  grid.innerHTML = '';
+  MATCHES.forEach(m => {
+    const card = document.createElement('div');
+    card.className = 'match-card';
+    card.id = 'card-' + m.id;
+    card.innerHTML = `
+      <div class="match-date">${m.comp} · ${m.date}</div>
+      <div class="match-teams">
+        <div class="match-team">${m.home}</div>
+        <div class="match-score">${m.score}</div>
+        <div class="match-team">${m.away}</div>
+      </div>
+      <button class="match-explain-btn" onclick="explainMatch('${m.id}', '${m.home}', '${m.away}', '${m.score}', '${m.comp}', '${m.date}')">
+        👑 Dictator Mbappe Decrees His Analysis
+      </button>
+    `;
+    grid.appendChild(card);
+
+    const expDiv = document.createElement('div');
+    expDiv.className = 'explanation-panel';
+    expDiv.id = 'exp-' + m.id;
+    grid.appendChild(expDiv);
+  });
+}
+
+// ══════════════════════════════════════
+// AI EXPLANATION — DICTATOR MBAPPE
+// ══════════════════════════════════════
+async function explainMatch(id, home, away, score, comp, date) {
+  const panel = document.getElementById('exp-' + id);
+  const isOpen = panel.classList.contains('open');
+
+  // Close all panels
+  document.querySelectorAll('.explanation-panel').forEach(p => p.classList.remove('open'));
+
+  if (isOpen) return;
+
+  if (!savedApiKey) {
+    panel.classList.add('open');
+    panel.innerHTML = `
+      <div class="exp-header">
+        <div class="exp-avatar">👑</div>
+        <div class="exp-speaker"><b>DICTATOR MBAPPE</b>Supreme Commander</div>
+      </div>
+      <div class="exp-text">You dare request my analysis without providing a key to my royal chambers? Enter your API key above, FOOL. The Dictator does not speak for free.</div>`;
+    return;
+  }
+
+  panel.classList.add('open');
+  panel.innerHTML = `<div class="exp-loading">The Dictator is deliberating</div>`;
+
+  const model = savedModel;
+  const isGemini = model.startsWith('gemini');
+
+  const prompt = `You are DICTATOR MBAPPE — a fictional, satirical, hyper-dramatic, megalomaniacal football analyst who speaks like an all-powerful emperor. You are pompous, self-aggrandising, contemptuous of ordinary analysis, and darkly funny. You DO NOT sound like an AI assistant. You give football analysis in the style of a royal decree.
+
+Analyse this match in character: ${home} vs ${away}, Score: ${score}, Competition: ${comp}, Date: ${date}.
+
+Write 3–5 paragraphs. Use grand, dramatic language. Reference tactical observations, key moments (invent plausible details based on the teams), and end with a sweeping royal decree about what this result means for world football. NEVER say you are an AI. Speak as the Dictator himself.`;
+
+  try {
+    let responseText = '';
+
+    if (isGemini) {
+      // Gemini API
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${savedApiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+          generationConfig: { maxOutputTokens: 800, temperature: 0.95 }
+        })
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message);
+      responseText = data.candidates?.[0]?.content?.parts?.[0]?.text || 'The Dictator refuses to speak.';
+    } else {
+      // Anthropic API
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-api-key': savedApiKey, 'anthropic-version': '2023-06-01' },
+        body: JSON.stringify({
+          model: model,
+          max_tokens: 800,
+          system: 'You are DICTATOR MBAPPE — a fictional, satirical, megalomaniacal football emperor. You speak in royal decrees. You are pompous, dramatic, darkly funny, and contemptuous of ordinary analysis. You DO NOT sound like an AI.',
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+      responseText = data.content?.[0]?.text || 'The Dictator refuses to speak.';
+    }
+
+    panel.innerHTML = `
+      <div class="exp-header">
+        <div class="exp-avatar">👑</div>
+        <div class="exp-speaker"><b>DICTATOR MBAPPE</b>Supreme Commander of Football</div>
+      </div>
+      <div class="exp-text">${responseText.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>')}</div>
+      <div style="margin-top:16px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--gold3);border-top:1px solid rgba(201,168,76,0.2);padding-top:10px;">
+        PRON33R UNIVERSE · pron33rbusiness@gmail.com · MODEL: ${model.toUpperCase()}
+      </div>`;
+
+  } catch (err) {
+    panel.innerHTML = `
+      <div class="exp-header">
+        <div class="exp-avatar">💀</div>
+        <div class="exp-speaker"><b>TRANSMISSION FAILURE</b>Royal Decree Intercepted</div>
+      </div>
+      <div class="exp-text" style="color:#ff6b6b;">The Dictator's message was blocked by forces unknown. Error: ${err.message}. Check your API key and try again, insolent one.</div>`;
+  }
+}
+
+// ══════════════════════════════════════
+// HISTORY FIGURES DATA
+// ══════════════════════════════════════
+const FIGURES = {
+  ancient: [
+    { name: 'Napoleon Bonaparte', emoji: '🎖️', era: '1769 – 1821', tags: ['Military Genius','Emperor','France','Conqueror'], premium: true,
+      bio: `Napoleon Bonaparte rose from obscure Corsican nobility to become Emperor of the French, reshaping Europe through relentless military campaigns and legal codification. His tactical genius at Austerlitz, Jena, and dozens of other battles made him the most feared commander of his age. He modernised France through the Napoleonic Code, which still influences legal systems worldwide.`,
+      key: `His invasion of Russia in 1812 proved catastrophic — 400,000 French soldiers entered, fewer than 100,000 returned. Exiled twice (Elba, then St. Helena), his ambition ultimately consumed the empire he built. Yet his reforms in law, education, and administration outlasted his military conquests by centuries.`,
+      quote: `"Impossible is a word found only in the dictionary of fools."`,
+      death: `Died May 5, 1821 on Saint Helena, possibly from arsenic poisoning or stomach cancer — historians still debate.` },
+    { name: 'Ashoka the Great', emoji: '☸️', era: '304 – 232 BC', tags: ['Emperor','India','Buddhism','Maurya'],
+      bio: `Ashoka was the third emperor of the Maurya Dynasty, ruling almost the entire Indian subcontinent. After witnessing the carnage of the Kalinga War (260 BC) — where over 100,000 died — he renounced violence and embraced Buddhism, pivoting from conquest to welfare, building hospitals, planting trees, and carving edicts of compassion across his empire.`,
+      key: `His transformation from warrior-king to philosopher-emperor is one of history's most dramatic moral arcs. He spread Buddhism across Asia through missionaries, fundamentally shaping the civilisation of a continent. His Ashoka Chakra (wheel) appears on the Indian flag today.`,
+      quote: `"All men are my children."`,
+      death: `Died 232 BC. His empire fragmented within 50 years of his death as his successors lacked his authority.` },
+    { name: 'Julius Caesar', emoji: '🦅', era: '100 – 44 BC', tags: ['Rome','General','Dictator','Conqueror'],
+      bio: `Gaius Julius Caesar conquered Gaul (modern France), crossed the Rubicon to seize Rome, defeated Pompey, and became dictator perpetuo. His campaigns in Egypt introduced him to Cleopatra. He reformed the Roman calendar, created the Julian calendar which we still use in modified form.`,
+      key: `Assassinated on the Ides of March (March 15, 44 BC) by senators led by Brutus and Cassius who feared he would become king. His death triggered civil wars that ended the Republic and gave birth to the Roman Empire under his adopted heir Octavian (Augustus).`,
+      quote: `"Veni, vidi, vici." (I came, I saw, I conquered.)`,
+      death: `Stabbed 23 times in the Theatre of Pompey, Rome. March 15, 44 BC.` },
+    { name: 'Alexander the Great', emoji: '⚡', era: '356 – 323 BC', tags: ['Macedonia','Conqueror','Greece','Persia'],
+      bio: `By age 30, Alexander had conquered a territory stretching from Greece to northwestern India — the largest empire the ancient world had ever seen. Tutored by Aristotle, he was both intellectual and unstoppable warrior. He never lost a single battle in his life.`,
+      key: `He founded over 20 cities named Alexandria across his empire, spreading Hellenistic culture from Egypt to Afghanistan. His premature death at 32 (possibly typhoid, poisoning, or alcoholic liver disease) left no clear successor, shattering the empire instantly.`,
+      quote: `"There is nothing impossible to him who will try."`,
+      death: `Died June 10–11, 323 BC in Babylon. Cause unknown and debated for 2,300 years.` },
+    { name: 'Cleopatra VII', emoji: '🐍', era: '69 – 30 BC', tags: ['Egypt','Queen','Ptolemaic','Rome'],
+      bio: `Last active ruler of the Ptolemaic Kingdom of Egypt. Cleopatra was the first of her dynasty to learn the Egyptian language (her ancestors spoke only Greek). She allied with Julius Caesar and later Mark Antony, positioning Egypt as a power broker in Rome's civil wars.`,
+      key: `When Octavian defeated Antony and marched on Egypt, both Antony and Cleopatra died by suicide. Egypt became a Roman province. Cleopatra was not only beautiful — she was a polyglot who spoke 9 languages, an economist, and a military strategist.`,
+      quote: `"I will not be triumphed over."`,
+      death: `Died August 12, 30 BC. Traditionally said to have died from a snake bite (asp), though modern historians suspect poison.` },
+    { name: 'Genghis Khan', emoji: '🏹', era: '1162 – 1227', tags: ['Mongolia','Conqueror','Khan','Steppe'],
+      bio: `Temüjin united the warring Mongol tribes and became Genghis Khan (Universal Ruler), founding the largest contiguous land empire in history. He conquered from China to Persia, killing an estimated 40 million people — roughly 10% of the world's population at the time.`,
+      key: `He created the first international postal system, promoted religious freedom, abolished torture in his law code, and was a master logistician. Today, approximately 16 million people are estimated to be his direct descendants.`,
+      quote: `"An action committed in anger is an action doomed to failure."`,
+      death: `Died August 18, 1227. Cause unknown — possibly injuries from a fall from a horse, internal injuries, or typhoid.` },
+    { name: 'Sun Tzu', emoji: '📜', era: '544 – 496 BC', tags: ['China','Strategy','Military','Philosophy'],
+      bio: `Ancient Chinese general and military strategist whose text "The Art of War" (孫子兵法) remains the most influential military treatise ever written. Written circa 500 BC, it has been applied to warfare, business, sports, and politics across 2,500 years.`,
+      key: `Its 13 chapters cover deception, terrain, intelligence, and psychology. Business schools worldwide teach it. NFL coaches reference it. It was used by Napoleon, Mao Zedong, and modern military strategists equally.`,
+      quote: `"Supreme excellence consists in breaking the enemy's resistance without fighting."`,
+      death: `Date unknown. Historical records confirm his service to King Helü of Wu but little else about his personal life.` },
+    { name: 'Ramesses II', emoji: '🛕', era: '1303 – 1213 BC', tags: ['Egypt','Pharaoh','Builder','Warrior'],
+      bio: `Ramesses II (the Great) ruled Egypt for 66 years, the longest of any pharaoh. He built the Abu Simbel temples, the Ramesseum, and signed history's first known peace treaty after the Battle of Kadesh against the Hittites. He fathered over 100 children.`,
+      key: `His mummy, now in Cairo's National Museum, shows he suffered from severe dental disease, hardening of the arteries, and arthritis in his final years. He was possibly the Pharaoh of the Exodus, though this remains debated.`,
+      quote: `"I am the great Ramesses, Great of Victories."`,
+      death: `Died ~1213 BC at approximately 90 years old, extraordinary for the era.` },
+  ],
+  medieval: [
+    { name: 'Genghis Khan', emoji: '🏇', era: '1162 – 1227', tags: ['Mongolia','Conqueror'],
+      bio: `Already covered in ancient section — Genghis Khan bridges ancient and medieval eras.`, key: `See Ancient section`, quote: `"An action committed in anger is an action doomed to failure."`, death:`` },
+    { name: 'Vlad the Impaler', emoji: '🧛', era: '1431 – 1476', tags: ['Wallachia','Romania','Brutal','Dracula'],
+      bio: `Vlad III of Wallachia, the inspiration for Dracula, was infamous for impaling enemies on stakes — sometimes tens of thousands at once, creating forests of corpses to terrorise invaders. He repelled Ottoman incursions through psychological terror as much as military force.`,
+      key: `Though horrifyingly brutal, he is considered a national hero in Romania for defending the country against Ottoman domination. He impaled boyars who betrayed him, foreign merchants who cheated, and criminals with equal relish.`,
+      quote: `"I have killed men, women, children, old and young who lived in Oblucitza and Novoselo." (from his own letter, proudly)`,
+      death: `Killed December 1476, possibly in battle against the Ottomans. His head was reportedly sent to Constantinople and displayed on a stake.` },
+    { name: 'Joan of Arc', emoji: '⚔️', era: '1412 – 1431', tags: ['France','Warrior','Saint','Visionary'],
+      bio: `An illiterate French peasant girl who claimed divine visions, Joan of Arc led French armies to crucial victories during the Hundred Years' War, turning the tide for France at age 17. She had no military training and yet commanders obeyed her.`,
+      key: `Captured by Burgundians, sold to the English, and burned at the stake for heresy at age 19. The Catholic Church declared her a martyr and eventually a saint in 1920. She remains France's national heroine.`,
+      quote: `"I am not afraid. I was born to do this."`,
+      death: `Burned at the stake, May 30, 1431, Rouen, France. Age 19.` },
+    { name: 'Saladin', emoji: '🌙', era: '1137 – 1193', tags: ['Sultan','Crusades','Islam','Chivalry'],
+      bio: `Saladin (Salah ad-Din) was the first Sultan of Egypt and Syria, founder of the Ayyubid dynasty. He recaptured Jerusalem from the Crusaders in 1187 after 88 years of Christian rule. He became legendary even among his Christian enemies for his chivalry, mercy, and honour.`,
+      key: `After capturing Jerusalem, he allowed Christian civilians to ransom themselves and leave safely — a stark contrast to the massacre Christians committed when they took the city in 1099. Richard the Lionheart, his main opponent, considered him a worthy rival.`,
+      quote: `"Riches do not remain long with one person."`,
+      death: `Died March 4, 1193, Damascus. He had given away so much of his wealth in charity that he had no money for a proper burial.` },
+    { name: 'Marco Polo', emoji: '🧭', era: '1254 – 1324', tags: ['Venice','Explorer','China','Traveller'],
+      bio: `Venetian merchant who travelled to China and served at Kublai Khan's court for 17 years. His account "The Travels of Marco Polo" introduced Europeans to Asia's riches and geography, inspiring Christopher Columbus 200 years later.`,
+      key: `He brought back knowledge of paper money, coal, pasta (arguably), and Asian trade goods. His stories were so fantastical that contemporaries called him "Il Milione" — the man of a million lies.`,
+      quote: `"I have not told half of what I saw."`,
+      death: `Died January 8–9, 1324, Venice. On his deathbed, asked to recant his "exaggerations," he refused.` },
+    { name: 'Tamerlane', emoji: '🔥', era: '1336 – 1405', tags: ['Timur','Mongol','Conqueror','Asia'],
+      bio: `Timur (Tamerlane) was a Turco-Mongol conqueror who built an empire from Anatolia to India. He massacred entire cities, built towers of skulls, and defeated both the Ottoman Sultan and the Indian Sultan within a decade.`,
+      key: `His campaigns killed an estimated 17 million people (5% of the world's population). He claimed to be a descendant of Genghis Khan and fancied himself a patron of the arts — Samarkand, his capital, was made one of the most beautiful cities on Earth.`,
+      quote: `"I am the flail of God. If you had not committed great sins, God would not have sent a punishment like me upon you."`,
+      death: `Died February 18, 1405, in Otrar (Kazakhstan), while preparing to invade China.` },
+    { name: 'Leonardo da Vinci', emoji: '🎨', era: '1452 – 1519', tags: ['Italy','Renaissance','Inventor','Artist'],
+      bio: `The archetypal "Renaissance Man" — painter, sculptor, architect, musician, mathematician, engineer, inventor, botanist, and writer. He painted the Mona Lisa and The Last Supper, designed flying machines 400 years before aircraft, and filled 13,000 pages of notebooks with ideas.`,
+      key: `His notebooks contain designs for tanks, solar power, calculators, and helicopters. He dissected over 30 human corpses to understand anatomy. He was illegitimate, left-handed, vegetarian, and almost certainly gay — all unconventional for his era.`,
+      quote: `"Learning never exhausts the mind."`,
+      death: `Died May 2, 1519, Amboise, France, in the arms of King Francis I of France.` },
+    { name: 'Machiavelli', emoji: '🎭', era: '1469 – 1527', tags: ['Italy','Politics','Philosophy','Florence'],
+      bio: `Niccolò Machiavelli wrote "The Prince," the founding text of modern political philosophy. He argued that rulers must be willing to use cruelty, deception, and force to maintain power — separating politics from personal morality for the first time.`,
+      key: `"It is better to be feared than loved, if you cannot be both." His work was banned by the Catholic Church, yet every powerful leader from Napoleon to modern politicians has studied it. "Machiavellian" became a byword for calculating political cunning.`,
+      quote: `"It is better to be feared than loved, if you cannot be both."`,
+      death: `Died June 21, 1527, Florence.` },
+  ],
+  modern: [
+    { name: 'Napoleon Bonaparte', emoji: '🎖️', era: '1769 – 1821', tags: ['Military','Emperor','France'], premium: true,
+      bio: `See Premium Character section above.`, key: `Greatest military commander of the modern era.`, quote: `"My enemy's are many, my equals are none."`, death:`` },
+    { name: 'Christopher Columbus', emoji: '⚓', era: '1451 – 1506', tags: ['Explorer','Spain','Americas'],
+      bio: `Genoan navigator who sailed under the Spanish crown, reaching the Americas in 1492 and initiating permanent European contact with the New World. He made four voyages across the Atlantic, never realising he had reached a continent previously unknown to Europeans.`,
+      key: `Columbus sparked colonisation of the Americas, which led to the deaths of tens of millions of indigenous people through disease, slavery, and warfare. His legacy is deeply contested — celebrated by some as courageous explorer, condemned by others as the initiator of genocide.`,
+      quote: `"You can never cross the ocean unless you have the courage to lose sight of the shore."`,
+      death: `Died May 20, 1506, Valladolid, Spain, in relative obscurity, never knowing he had found a new continent.` },
+    { name: 'Isaac Newton', emoji: '🍎', era: '1643 – 1727', tags: ['Science','Physics','Mathematics','England'],
+      bio: `Arguably the greatest scientist in history. Newton formulated the laws of motion and universal gravitation, co-invented calculus, built the first practical reflecting telescope, and advanced the understanding of light and colour — all largely during a two-year period of isolation during the plague.`,
+      key: `His "Principia Mathematica" (1687) is the most influential scientific work ever published. He spent more time studying alchemy and Biblical prophecy than physics, which history chose to overlook. He was notoriously difficult and had Newton vs. Leibniz feud over calculus credit.`,
+      quote: `"If I have seen further, it is by standing on the shoulders of giants."`,
+      death: `Died March 31, 1727, London. Likely died from mercury poisoning from his alchemical experiments.` },
+    { name: 'George Washington', emoji: '🦅', era: '1732 – 1799', tags: ['USA','Founding Father','President','Military'],
+      bio: `Commander of the Continental Army during the American Revolution and first President of the United States. Washington voluntarily relinquished power twice — after the Revolution and after two presidential terms — setting democratic precedents that defined the American republic.`,
+      key: `King George III reportedly said that if Washington walked away from power, he would be "the greatest man in the world." He owned 317 slaves and freed them only upon his death. His leadership forged a nation from 13 disparate colonies.`,
+      quote: `"It is better to offer no excuse than a bad one."`,
+      death: `Died December 14, 1799, Mount Vernon. Likely killed by physicians through excessive bloodletting for a throat infection.` },
+    { name: 'Queen Victoria', emoji: '👑', era: '1819 – 1901', tags: ['Britain','Empire','Victorian','Queen'],
+      bio: `Queen of the United Kingdom for 63 years and Empress of India. Under her reign, the British Empire expanded to cover 25% of the world's land mass and 400 million people. The Victorian era saw industrialisation, railway expansion, and global British dominance.`,
+      key: `Her nine children married into royal families across Europe, earning her the nickname "grandmother of Europe." Her descendants sat on the thrones of Britain, Germany, Russia, Spain, Greece, and Norway. She was devastated by her husband Prince Albert's death in 1861 and wore black for the remaining 40 years of her life.`,
+      quote: `"We are not interested in the possibilities of defeat; they do not exist."`,
+      death: `Died January 22, 1901, Osborne House. She was buried with a plaster cast of Prince Albert's hand.` },
+    { name: 'Karl Marx', emoji: '📕', era: '1818 – 1883', tags: ['Germany','Philosophy','Communism','Economics'],
+      bio: `Philosopher, economist, and revolutionary whose "Communist Manifesto" (1848) and "Das Kapital" (1867) laid the theoretical foundation for communism. He analysed capitalism with unprecedented rigor, predicting its contradictions would lead to worker revolution.`,
+      key: `Movements claiming his ideas shaped the USSR, China, Cuba, Vietnam, and dozens of nations. He lived most of his life in poverty in London, sustained by his collaborator Friedrich Engels. Whether his ideas were correctly applied is debated endlessly.`,
+      quote: `"The philosophers have only interpreted the world. The point, however, is to change it."`,
+      death: `Died March 14, 1883, London. Only 11 people attended his funeral.` },
+    { name: 'Abraham Lincoln', emoji: '🎩', era: '1809 – 1865', tags: ['USA','President','Civil War','Abolition'],
+      bio: `16th President of the United States, who led the nation through the Civil War and issued the Emancipation Proclamation, abolishing slavery in Confederate states. A self-educated lawyer from poverty, he became America's most revered president.`,
+      key: `Assassinated by John Wilkes Booth at Ford's Theatre, April 14, 1865, just five days after the Confederacy's surrender. He died the following morning — the first U.S. president to be assassinated.`,
+      quote: `"Give me six hours to chop down a tree and I will spend the first four sharpening the axe."`,
+      death: `Shot April 14, 1865; died April 15, 1865. Washington D.C.` },
+    { name: 'Nikola Tesla', emoji: '⚡', era: '1856 – 1943', tags: ['Inventor','Electricity','Genius','Serbia'],
+      bio: `Serbian-American inventor whose alternating current (AC) system powers virtually all electrical grids on Earth. He invented the AC motor, radio (disputed with Marconi), X-ray technology contributions, and the Tesla coil. Thomas Edison was his rival and nemesis.`,
+      key: `Edison ran a vicious propaganda campaign against Tesla's AC current, publicly electrocuting animals to "prove" AC was dangerous. Westinghouse backed Tesla; AC won. Tesla died penniless in a New York hotel, his room full of pigeons he considered his only friends.`,
+      quote: `"The present is theirs; the future, for which I really worked, is mine."`,
+      death: `Died January 7, 1943, New York City, alone. The U.S. government seized his papers immediately upon his death.` },
+    { name: 'Winston Churchill', emoji: '🚬', era: '1874 – 1965', tags: ['Britain','WWII','Prime Minister','Writer'],
+      bio: `British Prime Minister who led Britain through World War II, refusing to negotiate with Hitler when the entire continent had fallen. His speeches, particularly "We shall fight on the beaches," are considered the greatest oratory of the 20th century. He also won the Nobel Prize in Literature.`,
+      key: `Churchill's decisions caused the Bengal Famine (1943) in which 2–3 million Indians died — he prioritised wartime resources over food relief. His legacy is simultaneously that of the man who saved Western democracy and a figure whose imperial attitudes caused enormous suffering.`,
+      quote: `"Success is not final, failure is not fatal: it is the courage to continue that counts."`,
+      death: `Died January 24, 1965. Suffered a massive stroke nine days earlier.` },
+  ],
+  contemporary: [
+    { name: 'Adolf Hitler', emoji: '☠️', era: '1889 – 1945', tags: ['Germany','WWII','Genocide','Dictator'],
+      bio: `Chancellor and Führer of Nazi Germany from 1933 to 1945. His ideology of racial supremacy, antisemitism, and German nationalism led to World War II and the Holocaust — the systematic murder of six million Jews and five million others (Roma, disabled, gay people, political opponents).`,
+      key: `His invasion of the Soviet Union (Operation Barbarossa, 1941) was the largest military operation in history. The Second World War killed an estimated 70–85 million people. He committed suicide in his Berlin bunker as Soviet forces closed in, April 30, 1945.`,
+      quote: `(His words are not worth quoting. His actions speak only to catastrophe.)`,
+      death: `Suicide, April 30, 1945, Berlin. Shot himself; Eva Braun took cyanide beside him.` },
+    { name: 'Joseph Stalin', emoji: '🔴', era: '1878 – 1953', tags: ['USSR','Dictator','Communism','Terror'],
+      bio: `General Secretary of the Soviet Communist Party who industrialised the USSR at devastating human cost. His purges, gulags, and forced collectivisation killed between 6–20 million Soviets (historians dispute the number). He transformed a peasant nation into a superpower capable of defeating Nazi Germany.`,
+      key: `The Great Terror (1936-38) executed or imprisoned hundreds of thousands of the Soviet elite. His pact with Hitler in 1939 and then alliance with the West after 1941 made him both villain and (temporarily) Allied hero. He died in 1953, having murdered more Soviet citizens than the Nazis did.`,
+      quote: `"Death solves all problems — no man, no problem."`,
+      death: `Died March 5, 1953, possibly from a stroke or (some historians believe) poisoned by colleagues who feared him.` },
+    { name: 'Mao Zedong', emoji: '⭐', era: '1893 – 1976', tags: ['China','Communism','Revolution','Dictator'],
+      bio: `Founder of the People's Republic of China (1949) and Chairman of the Chinese Communist Party. His Great Leap Forward (1958–62) caused the deadliest famine in history, killing 15–55 million Chinese (estimates vary enormously). His Cultural Revolution (1966–76) destroyed cultural heritage and persecuted millions.`,
+      key: `Despite catastrophic policies, he is also credited with unifying China, raising literacy rates from 20% to 65%, and building a modern nation from one of the most exploited countries in history. His portrait still hangs over Tiananmen Square.`,
+      quote: `"Political power grows out of the barrel of a gun."`,
+      death: `Died September 9, 1976, Beijing, from motor neurone disease.` },
+    { name: 'Che Guevara', emoji: '✊', era: '1928 – 1967', tags: ['Revolution','Cuba','Argentina','Guerrilla'],
+      bio: `Argentine Marxist revolutionary who played a central role in the Cuban Revolution alongside Fidel Castro. He then attempted to spread revolution to Congo and Bolivia. He became the most iconic symbol of revolutionary politics and counterculture.`,
+      key: `His face on a red t-shirt became the best-selling image in history — an irony he would have despised. As commander in Cuba, he personally supervised executions of hundreds. His romantic image far exceeds the complicated, often brutal reality of his methods.`,
+      quote: `"Let me say, at the risk of seeming ridiculous, that the true revolutionary is guided by a great feeling of love."`,
+      death: `Executed October 9, 1967, Bolivia. Shot on CIA-assisted orders of the Bolivian government.` },
+    { name: 'Nelson Mandela', emoji: '✌️', era: '1918 – 2013', tags: ['South Africa','Apartheid','President','Peace'],
+      bio: `South African anti-apartheid revolutionary who spent 27 years in prison (largely on Robben Island) and emerged to become the first Black president of South Africa (1994-1999). He led the transition from apartheid to multiracial democracy without a civil war through reconciliation.`,
+      key: `He was on the U.S. terrorism watch list until 2008. His Truth and Reconciliation Commission chose healing over vengeance. Awarded the Nobel Peace Prize in 1993 jointly with F.W. de Klerk. Globally considered one of the greatest moral leaders of the 20th century.`,
+      quote: `"It always seems impossible until it's done."`,
+      death: `Died December 5, 2013, Johannesburg, South Africa, from recurring lung infection.` },
+    { name: 'Fidel Castro', emoji: '🇨🇺', era: '1926 – 2016', tags: ['Cuba','Revolution','Cold War','Dictator'],
+      bio: `Led the Cuban Revolution in 1959, overthrowing U.S.-backed dictator Batista, and ruled Cuba for nearly 50 years. He survived over 600 CIA assassination attempts (some estimates say 638). During the Cuban Missile Crisis (1962) he pushed for nuclear war — the USSR held him back.`,
+      key: `Cuba under Castro had near-universal literacy, free healthcare, and free education — alongside political repression, jailing of dissidents, and economic stagnation under U.S. embargo. His relationship with the Soviet Union made Cuba the flashpoint of Cold War nuclear brinkmanship.`,
+      quote: `"History will absolve me."`,
+      death: `Died November 25, 2016, Havana.` },
+    { name: 'Pol Pot', emoji: '💀', era: '1925 – 1998', tags: ['Cambodia','Khmer Rouge','Genocide','Dictator'],
+      bio: `Leader of the Khmer Rouge who seized Cambodia in 1975 and attempted to create an agrarian utopia by evacuating cities, abolishing money, banning religion, and murdering intellectuals. The Cambodian genocide killed 1.5–2 million people — approximately 25% of Cambodia's population.`,
+      key: `He targeted anyone who wore glasses (presumed intellectual), spoke foreign languages, or had soft hands. Mass graves called "the Killing Fields" were discovered after Vietnam invaded in 1979 and ended his regime. He lived in the jungle until 1998, never tried for genocide.`,
+      quote: `"I came to carry out the struggle, not to kill people."`,
+      death: `Died April 15, 1998. Natural causes (heart failure) the night before he was to be handed to an international tribunal.` },
+    { name: 'Martin Luther King Jr.', emoji: '🕊️', era: '1929 – 1968', tags: ['USA','Civil Rights','Peace','Activist'],
+      bio: `Baptist minister and leader of the American civil rights movement, whose nonviolent activism — inspired by Gandhi — achieved the Civil Rights Act (1964) and Voting Rights Act (1965), dismantling legal racial segregation in the United States.`,
+      key: `His "I Have a Dream" speech (August 28, 1963) is considered the greatest American speech of the 20th century. He was under constant FBI surveillance ordered by J. Edgar Hoover who called him "the most dangerous Negro in America." Assassinated at age 39.`,
+      quote: `"Darkness cannot drive out darkness; only light can do that."`,
+      death: `Assassinated April 4, 1968, Memphis, Tennessee. Shot by James Earl Ray.` },
+    { name: 'Mahatma Gandhi', emoji: '🕯️', era: '1869 – 1948', tags: ['India','Independence','Nonviolence','Peace'],
+      bio: `Led India's nonviolent independence movement against British rule. His philosophy of Satyagraha (truth-force / nonviolent resistance) influenced Martin Luther King Jr., Nelson Mandela, and global civil rights movements. His salt march (1930) became an iconic act of civil disobedience.`,
+      key: `He was also deeply flawed: his views on race (especially toward Black Africans), his bizarre celibacy experiments with young women, and his stance on the partition of India remain deeply contested. His assassination by a Hindu nationalist in 1948 shocked the world.`,
+      quote: `"Be the change you wish to see in the world."`,
+      death: `Assassinated January 30, 1948, New Delhi. Shot three times by Nathuram Godse.` },
+    { name: 'Kim Jong-il', emoji: '🎬', era: '1941 – 2011', tags: ['North Korea','Dictator','DPRK','Cold War'],
+      bio: `Supreme Leader of North Korea from 1994 to 2011, continuing his father Kim Il-sung's totalitarian state. He oversaw nuclear weapons development while millions of North Koreans starved in the 1990s famine. He was obsessed with cinema and allegedly kidnapped a South Korean director and his actress wife to make films for him.`,
+      key: `His propaganda claimed he could control the weather, never used a toilet, shot 11 holes-in-one on his first round of golf, and invented the hamburger. The reality: 3 million North Koreans died in the famine of the 1990s while he spent millions on cognac and weapons.`,
+      quote: `(Propaganda quotes only. Reality was total information control.)`,
+      death: `Died December 17, 2011, supposedly of a heart attack on his private train.` },
+    { name: 'Saddam Hussein', emoji: '🏚️', era: '1937 – 2006', tags: ['Iraq','Dictator','Ba\'ath','Middle East'],
+      bio: `President of Iraq from 1979 to 2003. He waged war on Iran (1980–88), invaded Kuwait (1990), used chemical weapons on Kurdish Iraqis (Halabja massacre, 1988, killing 5,000), and survived multiple U.S.-backed coup attempts before the 2003 U.S. invasion.`,
+      key: `Found hiding in a "spider hole" near his hometown Tikrit in December 2003. Tried by the Iraqi Special Tribunal and executed for crimes against humanity. His execution video, filmed on a mobile phone, became one of the most controversial media moments of the 2000s.`,
+      quote: `"Iraq is not like other countries. In the Arab world, I am the unique."`,
+      death: `Executed by hanging, December 30, 2006, Camp Justice, Baghdad.` },
+    { name: 'Muammar Gaddafi', emoji: '🌵', era: '1942 – 2011', tags: ['Libya','Dictator','Revolution','Africa'],
+      bio: `Libyan leader for 42 years, one of the longest-ruling dictators in history. He promoted pan-Africanism, anti-imperialism, and a bizarre "third theory" political philosophy outlined in his Green Book. He sponsored terrorism internationally before making peace with the West in 2003.`,
+      key: `After the 2011 Arab Spring uprising and NATO military intervention, he was captured by rebel fighters and killed. His death, filmed on mobile phones, sparked debate about intervention, justice, and the consequences of U.S. foreign policy.`,
+      quote: `"They love me. All my people with me, they love me."`,
+      death: `Killed October 20, 2011, Sirte, Libya, by rebel fighters after capture.` },
+    { name: 'Jeffrey Epstein', emoji: '📁', era: '1953 – 2019', tags: ['Scandal','Files','USA','Conspiracy'],
+      bio: `American financier and convicted sex offender who ran an international trafficking network exploiting underage girls for himself and his elite social network. He befriended presidents, princes, scientists, and billionaires. His "little black book" contained contact information for hundreds of powerful global figures.`,
+      key: `His 2019 arrest on federal charges of sex trafficking was followed by his alleged suicide in Metropolitan Correctional Center, New York on August 10, 2019. Security cameras malfunctioned, guards fell asleep, and he was taken off suicide watch — creating massive public suspicion. The Epstein files, partially unsealed in 2024, named numerous prominent figures but revealed less than conspiracy theorists had expected. His co-conspirator Ghislaine Maxwell was convicted in 2021 and sentenced to 20 years.`,
+      quote: `(No meaningful quotes. His story is one of power, abuse, and unanswered questions.)`,
+      death: `Died August 10, 2019. Officially suicide by hanging in federal custody. Widely disputed.` },
+    { name: 'Idi Amin', emoji: '🎖️', era: '1925 – 2003', tags: ['Uganda','Dictator','Africa','Brutal'],
+      bio: `Military dictator of Uganda (1971–79) who expelled 60,000 Ugandan Asians, gave himself the title "His Excellency, President for Life, Field Marshal Al Hadji Doctor Idi Amin Dada, VC, DSO, MC, Lord of All the Beasts of the Earth and Fishes of the Seas and Conqueror of the British Empire in Africa in General and Uganda in Particular." He allegedly had some of his opponents eaten.`,
+      key: `His rule killed between 100,000 and 500,000 Ugandans. He befriended dictators globally, was hosted by Saudi Arabia until his death, and never faced justice. His flamboyance, unpredictability, and self-aggrandisement became the archetype of the African dictator caricature.`,
+      quote: `"I am the hero of Africa."`,
+      death: `Died August 16, 2003, Jeddah, Saudi Arabia. Kidney failure.` },
+    { name: 'Augusto Pinochet', emoji: '🇨🇱', era: '1915 – 2006', tags: ['Chile','Dictator','Cold War','USA'],
+      bio: `Chilean general who overthrew democratically elected Salvador Allende in a CIA-backed coup on September 11, 1973. He ruled Chile until 1990, torturing and disappearing approximately 3,200 people, imprisoning 40,000, and forcing 200,000 into exile.`,
+      key: `He was arrested in London in 1998 at Spain's request for crimes against humanity, creating a landmark moment in international law. Chilean courts ultimately never convicted him. His economic policies (implemented by "Chicago Boys" disciples of Milton Friedman) became a neoliberal model, both praised and condemned.`,
+      quote: `"Not a leaf moves in this country if I don't move it."`,
+      death: `Died December 10, 2006, Santiago, from heart failure. Was under house arrest awaiting trial.` },
+  ]
+};
+
+// ══════════════════════════════════════
+// RENDER FIGURES
+// ══════════════════════════════════════
+function renderFigures() {
+  renderGrid('ancient-grid', FIGURES.ancient);
+  renderGrid('medieval-grid', FIGURES.medieval);
+  renderGrid('modern-grid', FIGURES.modern);
+  renderGrid('contemporary-grid', FIGURES.contemporary);
+}
+
+function renderGrid(gridId, figures) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+  grid.innerHTML = '';
+  figures.forEach((f, i) => {
+    const card = document.createElement('div');
+    card.className = 'figure-card' + (f.premium ? ' premium' : '');
+    card.innerHTML = `
+      <span class="figure-emoji">${f.emoji}</span>
+      <div class="figure-name">${f.name}</div>
+      <div class="figure-era">${f.era}</div>
+    `;
+    card.onclick = () => openFigureModal(f);
+    grid.appendChild(card);
+  });
+}
+
+// ══════════════════════════════════════
+// FIGURE MODAL
+// ══════════════════════════════════════
+function openFigureModal(f) {
+  const modal = document.getElementById('figureModal');
+  const body = document.getElementById('modalBody');
+  const tagsHtml = (f.tags || []).map(t => `<span class="modal-tag">${t}</span>`).join('');
+
+  body.innerHTML = `
+    <span class="modal-emoji">${f.emoji}</span>
+    <div class="modal-name">${f.name}</div>
+    <div class="modal-dates">${f.era}</div>
+    <div class="modal-tags">${tagsHtml}</div>
+    ${f.premium ? '<div style="text-align:center;margin-bottom:16px;"><span style="background:linear-gradient(135deg,#7a5c1e,#c9a84c);color:#0a0804;font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;padding:4px 12px;">⭐ PREMIUM CHARACTER ⭐</span></div>' : ''}
+    <div class="modal-section-title">Biography</div>
+    <div class="modal-text">${f.bio}</div>
+    <div class="modal-section-title">Historical Significance</div>
+    <div class="modal-text">${f.key}</div>
+    <div class="modal-quote">"${f.quote.replace(/^"|"$/g,'')}"</div>
+    ${f.death ? `<div class="modal-section-title">Death</div><div class="modal-text">${f.death}</div>` : ''}
+    <div style="margin-top:24px;text-align:center;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:rgba(201,168,76,0.35);border-top:1px solid rgba(201,168,76,0.15);padding-top:16px;">
+      PRON33R UNIVERSE · pron33rbusiness@gmail.com
+    </div>
+  `;
+  modal.classList.add('open');
+}
+
+function closeModal(e) {
+  if (e.target.id === 'figureModal') {
+    document.getElementById('figureModal').classList.remove('open');
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('figureModal').classList.remove('open');
+});
+</script>
+</body>
+</html>
