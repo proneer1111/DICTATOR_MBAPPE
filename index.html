@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Agent Command Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0b0f19;
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen flex flex-col justify-between p-4">
+
+    <header class="w-full max-w-md mx-auto bg-gray-900 border border-purple-900/50 rounded-xl p-4 mb-4 neon-border">
+        <h1 class="text-xl font-bold text-center tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
+            AGENCY ORCHESTRATION TERMINAL
+        </h1>
+        <p class="text-xs text-center text-purple-400/70 mt-1">GCP Rapid Agent Submission Track</p>
+    </header>
+
+    <main class="w-full max-w-md mx-auto flex-grow bg-gray-950 border border-gray-800 rounded-2xl p-5 flex flex-col justify-between shadow-2xl">
+        
+        <div id="terminal-view" class="flex-grow flex flex-col justify-center items-center text-center py-6">
+            <div id="history-panel" class="space-y-4">
+                <div class="text-4xl">🏛️</div>
+                <h2 class="text-lg font-bold text-indigo-400">Napoleon Core Activated</h2>
+                <p class="text-sm italic text-gray-400 max-w-xs mx-auto">"My enemies are many, my equals are none."</p>
+                <div class="w-full max-w-xs mx-auto pt-4">
+                    <textarea class="w-full bg-gray-900 border border-gray-800 rounded-lg p-3 text-xs focus:outline-none focus:border-indigo-500 text-gray-300" rows="3" placeholder="Drop history notes here for tactical conversion..."></textarea>
+                    <button class="w-full mt-2 bg-indigo-600 hover:bg-indigo-700 text-xs font-bold py-2 rounded-lg tracking-wider transition">CONQUER SUMMARY</button>
+                </div>
+            </div>
+
+            <div id="wc-panel" class="space-y-4 hidden">
+                <div class="text-4xl">⚽</div>
+                <h2 class="text-lg font-bold text-emerald-400">Dictator Mbappé Command</h2>
+                <p class="text-sm italic text-gray-400 max-w-xs mx-auto">"I run the pitch, the club, and the protocol."</p>
+                <div class="w-full max-w-xs mx-auto pt-4">
+                    <input type="text" class="w-full bg-gray-900 border border-gray-800 rounded-lg p-3 text-xs focus:outline-none focus:border-emerald-500 text-gray-300 mb-2" placeholder="Enter match pairing (e.g., France vs USA)">
+                    <button class="w-full bg-emerald-600 hover:bg-emerald-700 text-xs font-bold py-2 rounded-lg tracking-wider transition">ISSUE EXECUTIVE DECREE</button>
+                </div>
+            </div>
+
+            <div id="vault-panel" class="space-y-4 hidden">
+                <div class="text-4xl animate-pulse">🔒</div>
+                <h2 class="text-lg font-bold text-purple-400">Secure Vault Terminal</h2>
+                <p class="text-xs text-gray-500 max-w-xs mx-auto">Awaiting next framework integration module during sprint development cycle.</p>
+            </div>
+        </div>
+
+        <nav class="grid grid-cols-3 gap-2 bg-gray-900 p-1.5 rounded-xl border border-gray-800 mt-6">
+            <button onclick="switchTab('history')" id="btn-history" class="py-2.5 rounded-lg text-xs font-bold tracking-wide bg-indigo-950 text-indigo-400 border border-indigo-900/50 transition">
+                History
+            </button>
+            <button onclick="switchTab('wc')" id="btn-wc" class="py-2.5 rounded-lg text-xs font-bold tracking-wide text-gray-400 hover:bg-gray-800/50 transition">
+                World Cup
+            </button>
+            <button onclick="switchTab('vault')" id="btn-vault" class="py-2.5 rounded-lg text-xs font-bold tracking-wide text-gray-400 hover:bg-gray-800/50 transition">
+                Soon
+            </button>
+        </nav>
+    </main>
+
+    <footer class="w-full text-center text-[10px] text-gray-600 tracking-widest uppercase mt-4">
+        Platform Core System v1.0.0
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all panels
+            document.getElementById('history-panel').classList.add('hidden');
+            document.getElementById('wc-panel').classList.add('hidden');
+            document.getElementById('vault-panel').classList.add('hidden');
+            
+            // Reset nav buttons
+            const buttons = ['history', 'wc', 'vault'];
+            buttons.forEach(b => {
+                const btn = document.getElementById(`btn-${b}`);
+                btn.className = "py-2.5 rounded-lg text-xs font-bold tracking-wide text-gray-400 hover:bg-gray-800/50 transition";
+            });
+
+            // Activate chosen target assets
+            if(tabId === 'history') {
+                document.getElementById('history-panel').classList.remove('hidden');
+                document.getElementById('btn-history').className = "py-2.5 rounded-lg text-xs font-bold tracking-wide bg-indigo-950 text-indigo-400 border border-indigo-900/50 transition";
+            } else if(tabId === 'wc') {
+                document.getElementById('wc-panel').classList.remove('hidden');
+                document.getElementById('btn-wc').className = "py-2.5 rounded-lg text-xs font-bold tracking-wide bg-emerald-950 text-emerald-400 border border-emerald-900/40 transition";
+            } else if(tabId === 'vault') {
+                document.getElementById('vault-panel').classList.remove('hidden');
+                document.getElementById('btn-vault').className = "py-2.5 rounded-lg text-xs font-bold tracking-wide bg-purple-950 text-purple-400 border border-purple-900/40 transition";
+            }
+        }
+    </script>
+</body>
+</html>
